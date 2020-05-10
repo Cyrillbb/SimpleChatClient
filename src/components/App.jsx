@@ -6,12 +6,13 @@ import LoginWindow from './login-window/LoginWindow';
 import { setUser } from './../actions/setUser';
 import { getUsers } from './../actions/getUsers';
 import { recieveMessages } from './../actions/recieveMessages';
+import './App.css'
 
 
 function App(props) {
     useEffect(() => {
         props.socket.on('urUserData', e => {
-            props.setUser(e.id, e.nickname)
+            props.setUser(e)
         })
         props.socket.on('usersData', e => {
             props.getUsers(e)
@@ -25,7 +26,7 @@ function App(props) {
     return (
         <div className='App'>
             {props.status ?
-                <div>
+                <div className='chat'>
                     <UsersWindow socket={props.socket} />
                     <ChatWindow socket={props.socket} />
                 </div> :

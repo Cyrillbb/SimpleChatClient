@@ -2,8 +2,8 @@
 import { SET_USER_INFO } from './../actions/action-types';
 
 const initialState = {
-    id: '',
     nickname: '',
+    id: '',
 }
 
 export const userSetter = (state = initialState, action) => {

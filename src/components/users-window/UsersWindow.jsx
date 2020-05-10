@@ -1,18 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setMsgtarget } from './../../actions/setMsgTarget';
+import './UsersWindow.css'
 
 function UsersWindow(props) {
     return (
-        <div className='UsersWindow'>
-            {props.usersList.filter(i => i.id !== props.userInfo).map(i =>
-                <li
-                    key={i.id}
-                    onClick={() => { props.setTarget(i.id); props.socket.emit('getChat', props.target) }}
-                >
-                    {i.nickname}
-                </li>
-            )}
+        <div className='usersWindow'>
+            <ul className='usersList'>
+                {props.usersList.filter(i => i.nickname !== props.userInfo.nickname).map(i =>
+                    <li
+                        className='user'
+                        key={i.id}
+                        onClick={() => { props.setTarget(i.nickname); props.socket.emit('getChat', props.target) }}
+                    >
+                        {i.nickname}
+                    </li>
+                )}
+            </ul>
         </div>
     )
 }
@@ -21,14 +25,14 @@ function UsersWindow(props) {
 const mapStateToProps = state => {
     return {
         usersList: state.users,
-        userInfo: state.userInfo.id,
+        userInfo: state.userInfo,
         target: state.msgTarget,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        setTarget: (id) => dispatch(setMsgtarget(id))
+        setTarget: (nick) => dispatch(setMsgtarget(nick))
     }
 }
 

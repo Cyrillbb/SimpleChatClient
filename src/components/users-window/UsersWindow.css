@@ -1,0 +1,25 @@
+.usersWindow {
+    background-color: rgba(28, 28, 202, 0.733);
+    width: 300px;
+    max-width: 300px;
+    height: 600px;
+}
+
+.usersList {
+    width: 100%;
+    padding: 0px;
+    margin: 0 auto;
+}
+
+.user {
+    background-color: rgba(135, 206, 250, 0.719);
+    font-size: large;
+    list-style: none;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: solid 1px black;
+}
+
+.user:hover {
+    background-color: lightyellow;
+}

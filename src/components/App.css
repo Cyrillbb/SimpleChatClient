@@ -1,0 +1,8 @@
+.chat {
+    display: flex;
+    flex-direction: row;
+    max-width: 800px;
+    max-height: 600px;
+    align-items: center;
+    margin: 100px auto;
+}
