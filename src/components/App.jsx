@@ -7,6 +7,7 @@ import { setUser } from './../actions/setUser';
 import { getUsers } from './../actions/getUsers';
 import { recieveMessages } from './../actions/recieveMessages';
 import './App.css'
+import { checkNew } from './../actions/checkNew';
 
 
 function App(props) {
@@ -15,11 +16,13 @@ function App(props) {
             props.setUser(e)
         })
         props.socket.on('usersData', e => {
-            props.getUsers(e)
+            props.getUsers(e)            
         })
         props.socket.on('send messages', e => {
             props.recieveMsg(e)
+            props.checkNew(e)           
         })
+        props.socket.on('msgHistory', e => props.recieveMsg(e))
     }, [])
 
 
@@ -38,7 +41,9 @@ function App(props) {
 
 const mapStateToProps = state => {
     return {
-        status: state.logInStatus.loggedIn
+        status: state.logInStatus.loggedIn,
+        users: state.users,
+        messages: state.messages        
     }
 }
 
@@ -46,7 +51,9 @@ const mapDispatchToProps = dispatch => {
     return {
         setUser: (id, nick) => dispatch(setUser(id, nick)),
         getUsers: (e) => dispatch(getUsers(e)),
-        recieveMsg: (e) => dispatch(recieveMessages(e))
+        recieveMsg: (e) => dispatch(recieveMessages(e)),
+        checkNew: (e) => dispatch(checkNew(e))
+        
     }
 }
 

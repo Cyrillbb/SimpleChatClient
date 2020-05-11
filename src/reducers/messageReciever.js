@@ -6,7 +6,7 @@ const initialState = []
 export const messageReciever = (state = initialState, action) => {
     switch(action.type) {
         case(RECIEVE_MESSAGES): {
-            return action.payload
+            return [...state, ...action.payload]
         }
         default: return state
     }

@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setMsgtarget } from './../../actions/setMsgTarget';
 import './UsersWindow.css'
+import { removeFromNew } from './../../actions/removeFromNew';
 
 function UsersWindow(props) {
     return (
@@ -10,10 +11,14 @@ function UsersWindow(props) {
                 {props.usersList.filter(i => i.nickname !== props.userInfo.nickname).map(i =>
                     <li
                         className='user'
-                        key={i.id}
-                        onClick={() => { props.setTarget(i.nickname); props.socket.emit('getChat', props.target) }}
+                        key={i.nickname}
+                        onClick={() => {
+                            props.setTarget(i.nickname);
+                            props.socket.emit('getChat', props.target);
+                            props.checkNew(i.nickname)
+                        }}
                     >
-                        {i.nickname}
+                        {i.nickname} {props.new.filter(j => j === i.nickname).length}
                     </li>
                 )}
             </ul>
@@ -27,12 +32,14 @@ const mapStateToProps = state => {
         usersList: state.users,
         userInfo: state.userInfo,
         target: state.msgTarget,
+        new: state.new,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        setTarget: (nick) => dispatch(setMsgtarget(nick))
+        setTarget: (nick) => dispatch(setMsgtarget(nick)),
+        checkNew: (nick) => dispatch(removeFromNew(nick))
     }
 }
 
