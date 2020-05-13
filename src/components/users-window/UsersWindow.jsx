@@ -7,6 +7,7 @@ import { removeFromNew } from './../../actions/removeFromNew';
 function UsersWindow(props) {
     return (
         <div className='usersWindow'>
+            <h3 className='userHeader'>Logged in as {props.userInfo.nickname}</h3>
             <ul className='usersList'>
                 {props.usersList.filter(i => i.nickname !== props.userInfo.nickname).map(i =>
                     <li
@@ -15,13 +16,20 @@ function UsersWindow(props) {
                         onClick={() => {
                             props.setTarget(i.nickname);
                             props.socket.emit('getChat', props.target);
-                            props.checkNew(i.nickname)
+                            props.checkNew(i.nickname);
+                            setTimeout(() => {
+                                document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+                            }, 50)                            
                         }}
                     >
                         {i.nickname} {props.new.filter(j => j === i.nickname).length}
                     </li>
                 )}
             </ul>
+            <div className='btnBlock'>
+                <button className='controls'>Create room</button>
+                <button onClick={() => {window.location.reload()}} className='controls'>Logout</button>
+            </div>
         </div>
     )
 }

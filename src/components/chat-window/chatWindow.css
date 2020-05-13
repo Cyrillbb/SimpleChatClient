@@ -1,25 +1,75 @@
 .chatWindow {
-    width: 600px;
-    height: 600px;    
+    width: 500px;
+    height: 600px;
+    border: solid grey 1px;
+    border-left: none;
 }
 
 .messageBox {
     height: 570px;
     width: 500px;
-    background-color: rgba(24, 23, 23, 0.781);
+    background-color: #001f3f;
 }
 
 .messageList {
-    margin: 0 auto;
+    margin: 0px;
+    list-style: none;
+    overflow-y: scroll;
+    height: 100%;
+    text-align: left;
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    scrollbar-width: thin;
 }
 
 .chatForm {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 500px;
     height: 30px;
+    background-color: black;
 }
 
 #msg {
-    width: 80%;
+    width: 85%;
+    border: none;
+}
+
+.sendBtn {
+    width: 15%;
+    background-color: #0074D9;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.sendBtn:hover {
+    background-color: rgb(0, 247, 255);
+}
+
+.msgFromMe {
+    background-color: #d9ecff;
+    max-width: 30%;
+    margin: 5px;
+    word-wrap: break-word;
+    padding: 5px;
+    border: solid black 1px;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.msgToMe {
+    background-color: #efefef;
+    max-width: 30%;
+    margin: 5px;
+    word-wrap: break-word;
+    padding: 5px;
+    border: solid black 1px;
+    border-radius: 5px;
+    width: max-content;
+    align-self: flex-start;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './chatWindow.css'
 
@@ -7,27 +7,41 @@ function ChatWindow(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.socket.emit('message', {
-            message: msg,
-            from: props.myNickname,
-            to: props.targetNickname
-        })
+        if (props.targetNickname.length !== 0) {
+            props.socket.emit('message', {
+                message: msg,
+                from: props.myNickname,
+                to: props.targetNickname
+            })
+            setMsg('')
+            document.getElementById('msg').value = ''
+            setTimeout(() => {
+                document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+            }, 500)
+        }    
     }
 
     return (
         <div className='chatWindow'>
             <div className='messageBox'>
-                <ul className='messageList'>
+                <ul className='messageList' id='msgList'>
                     {props.messages
                         .filter(i => i.to === props.targetNickname || i.from === props.targetNickname)
-                        .map(i => <li key={i.message}>{i.message}</li>)
+                        .map((i, index) => {
+                            if (i.from === props.targetNickname) {
+                                return <li className='msgToMe' key={index}>{i.message}</li>
+                            }
+                            else {
+                                return <li className='msgFromMe' key={index}>{i.message}</li>
+                            }
+                        })
 
                     }
                 </ul>
             </div>
             <form className='chatForm' onSubmit={handleSubmit}>
                 <input onChange={(e) => { setMsg(e.target.value) }} type="text" id="msg" />
-                <button type='submit'>Send</button>
+                <button className='sendBtn' type='submit'><i className="far fa-paper-plane"></i></button>
             </form>
         </div>
     )
@@ -42,3 +56,5 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, null)(ChatWindow)
+
+//<li key={i.message}>{i.message}</li>

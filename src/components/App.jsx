@@ -8,23 +8,36 @@ import { getUsers } from './../actions/getUsers';
 import { recieveMessages } from './../actions/recieveMessages';
 import './App.css'
 import { checkNew } from './../actions/checkNew';
+import { removeFromNew } from './../actions/removeFromNew';
 
 
 function App(props) {
+
     useEffect(() => {
         props.socket.on('urUserData', e => {
             props.setUser(e)
         })
         props.socket.on('usersData', e => {
-            props.getUsers(e)            
+            props.getUsers(e)
         })
         props.socket.on('send messages', e => {
             props.recieveMsg(e)
-            props.checkNew(e)           
+            props.checkNew(e)
         })
         props.socket.on('msgHistory', e => props.recieveMsg(e))
     }, [])
 
+    useEffect(() => {
+        const checkCurrent = (e) => {
+            if (e.from === props.target) {
+                document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+                props.removeNew(e.from)
+                
+            }            
+        }
+        props.socket.removeListener('send messages', checkCurrent)        
+        props.socket.on('send messages', checkCurrent)        
+    }, [props.target, props.socket])
 
     return (
         <div className='App'>
@@ -43,7 +56,8 @@ const mapStateToProps = state => {
     return {
         status: state.logInStatus.loggedIn,
         users: state.users,
-        messages: state.messages        
+        messages: state.messages,
+        target: state.msgTarget
     }
 }
 
@@ -52,8 +66,9 @@ const mapDispatchToProps = dispatch => {
         setUser: (id, nick) => dispatch(setUser(id, nick)),
         getUsers: (e) => dispatch(getUsers(e)),
         recieveMsg: (e) => dispatch(recieveMessages(e)),
-        checkNew: (e) => dispatch(checkNew(e))
-        
+        checkNew: (e) => dispatch(checkNew(e)),
+        removeNew: (e) => dispatch(removeFromNew(e))
+
     }
 }
 
