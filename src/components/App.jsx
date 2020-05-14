@@ -12,32 +12,31 @@ import { removeFromNew } from './../actions/removeFromNew';
 
 
 function App(props) {
+    let { socket, setUser, getUsers, recieveMsg, checkNew, target, removeNew, newMsg } = props
+
 
     useEffect(() => {
-        props.socket.on('urUserData', e => {
-            props.setUser(e)
+        socket.on('urUserData', e => {
+            setUser(e)
         })
-        props.socket.on('usersData', e => {
-            props.getUsers(e)
+        socket.on('usersData', e => {
+            getUsers(e)
         })
-        props.socket.on('send messages', e => {
-            props.recieveMsg(e)
-            props.checkNew(e)
+        socket.on('send messages', e => {
+            recieveMsg(e)
+            checkNew(e)
         })
-        props.socket.on('msgHistory', e => props.recieveMsg(e))
-    }, [])
+        socket.on('msgHistory', e => recieveMsg(e))
+    }, [socket, setUser, getUsers, recieveMsg, checkNew])
+
 
     useEffect(() => {
-        const checkCurrent = (e) => {
-            if (e.from === props.target) {
-                document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
-                props.removeNew(e.from)
-                
-            }            
+        if(target === newMsg[newMsg.length - 1]) {
+            document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+            removeNew(newMsg[newMsg.length - 1])
         }
-        props.socket.removeListener('send messages', checkCurrent)        
-        props.socket.on('send messages', checkCurrent)        
-    }, [props.target, props.socket])
+
+    }, [target, socket, removeNew, newMsg])
 
     return (
         <div className='App'>
@@ -57,7 +56,9 @@ const mapStateToProps = state => {
         status: state.logInStatus.loggedIn,
         users: state.users,
         messages: state.messages,
-        target: state.msgTarget
+        target: state.msgTarget,
+        newMsg: state.new,
+
     }
 }
 

@@ -62,3 +62,17 @@
 .controls:hover {
     background-color: rgb(0, 247, 255);
 }
+
+.controlsHighlighted {
+    background-color: #253341; 
+}
+
+.counter {
+    display: inline-block;
+    background-color: red;
+    border: solid red 1px;
+    border-radius: 50%;
+    font-size: smaller;
+    width: 20px;
+    height: 20px;
+}
