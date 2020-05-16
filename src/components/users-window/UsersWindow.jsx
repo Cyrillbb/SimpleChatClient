@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { setMsgtarget } from './../../actions/setMsgTarget';
 import './UsersWindow.css'
 import { removeFromNew } from './../../actions/removeFromNew';
+import { Link } from 'react-router-dom';
 
 function UsersWindow(props) {
 
@@ -30,18 +31,20 @@ function UsersWindow(props) {
                             setTimeout(() => {
                                 document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
                             }, 50);
-                            handleHighlight(e)                            
+                            handleHighlight(e)
                         }}
                     >
-                        {i.nickname} {props.new.indexOf(i.nickname) > -1 ? 
-                        <span className='counter'>{props.new.filter(j => j === i.nickname).length}</span>
-                         : <div></div>}
+                        {i.nickname} {props.new.indexOf(i.nickname) > -1 ?
+                            <span className='counter'>{props.new.filter(j => j === i.nickname).length}</span>
+                            : <div></div>}
                     </li>
                 )}
             </ul>
             <div className='btnBlock'>
-                <button className='controls'>Create room</button>
-                <button onClick={() => {window.location.reload()}} className='controls'>Logout</button>
+                <Link to='/createRoom'>
+                    <button className='controls'>Create room</button>
+                </Link>
+                <button onClick={() => { window.location.reload() }} className='controls'>Logout</button>
             </div>
         </div>
     )
@@ -65,5 +68,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersWindow)
-
-//props.new.filter(j => j === i.nickname).length

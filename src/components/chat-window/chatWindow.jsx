@@ -56,5 +56,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, null)(ChatWindow)
-
-//<li key={i.message}>{i.message}</li>
