@@ -39,6 +39,24 @@ function UsersWindow(props) {
                             : <div></div>}
                     </li>
                 )}
+                {props.rooms.map(i =>
+                    <li id={i}
+                        className='user'
+                        onClick={(e) => {
+                            props.setTarget(i);
+                            props.checkNew(i);
+                            setTimeout(() => {
+                                document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+                            }, 50);
+                            handleHighlight(e)
+                        }}
+                    >
+                        {i}
+                        {i.nickname} {props.new.indexOf(i) > -1 ?
+                            <span className='counter'>{props.new.filter(j => j === i).length}</span>
+                            : <div></div>}
+                    </li>
+                )}
             </ul>
             <div className='btnBlock'>
                 <Link to='/createRoom'>
@@ -57,6 +75,7 @@ const mapStateToProps = state => {
         userInfo: state.userInfo,
         target: state.msgTarget,
         new: state.new,
+        rooms: state.rooms,
     }
 }
 

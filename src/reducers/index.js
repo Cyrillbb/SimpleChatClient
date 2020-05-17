@@ -5,7 +5,8 @@ import { usersGetter } from './usersGetter';
 import { msgTargetSetter } from './targetSetter';
 import { messageReciever } from './messageReciever';
 import { newChecker } from './newChecker';
-import { roomsGetter } from './roomCreator';
+import { roomsGetter } from './roomsGetter';
+
 
 export const rootReducer = combineReducers({
     userInfo: userSetter,
@@ -14,5 +15,5 @@ export const rootReducer = combineReducers({
     msgTarget: msgTargetSetter,
     messages: messageReciever,
     new: newChecker,
-    rooms: roomsGetter,    
+    rooms: roomsGetter,   
 })

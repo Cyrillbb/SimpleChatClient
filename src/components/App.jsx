@@ -12,11 +12,12 @@ import { removeFromNew } from './../actions/removeFromNew';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import CreateRoom from './create-room-window/createRoom';
 import RoomInvite from './room-invite/roomInvite';
+import { getRooms } from './../actions/getRooms';
 
 
 function App(props) {
 
-    const { socket, setUser, getUsers, recieveMsg, checkNew, target, removeNew, newMsg } = props
+    const { socket, setUser, getUsers, recieveMsg, checkNew, target, removeNew, newMsg, getRooms } = props
 
     const [inviteModal, setInviteModal] = useState(false)
     const [roomName, setRoomName] = useState('')
@@ -38,8 +39,15 @@ function App(props) {
             setInviteModal(true)
             setRoomName(e)
         })
-        socket.on('joined', e => alert(e))
-    }, [socket, setUser, getUsers, recieveMsg, checkNew])
+        socket.on('joined', e => {
+            alert(e)
+            setInviteModal(false)
+            getRooms(e)
+        })
+        socket.on('rooms', e => {
+            getRooms(e)
+        })
+    }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms])
 
     useEffect(() => {
         if (target === newMsg[newMsg.length - 1]) {
@@ -94,7 +102,8 @@ const mapDispatchToProps = dispatch => {
         getUsers: (e) => dispatch(getUsers(e)),
         recieveMsg: (e) => dispatch(recieveMessages(e)),
         checkNew: (e) => dispatch(checkNew(e)),
-        removeNew: (e) => dispatch(removeFromNew(e))
+        removeNew: (e) => dispatch(removeFromNew(e)),
+        getRooms: (e) => dispatch(getRooms(e))
 
     }
 }
