@@ -14,7 +14,7 @@ function CreateRoom(props) {
         }
         else {
             setUsers(selectedUsers.filter(i => i !== e.target.id))
-        }        
+        }
     }
 
     const handleCreateRoom = () => {

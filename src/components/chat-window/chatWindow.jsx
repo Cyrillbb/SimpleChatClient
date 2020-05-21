@@ -18,7 +18,7 @@ function ChatWindow(props) {
             setTimeout(() => {
                 document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
             }, 500)
-        }    
+        }
     }
 
     return (
@@ -28,11 +28,15 @@ function ChatWindow(props) {
                     {props.messages
                         .filter(i => i.to === props.targetNickname || i.from === props.targetNickname)
                         .map((i, index) => {
-                            if (i.from === props.targetNickname) {
-                                return <li className='msgToMe' key={index}>{i.message}</li>
+                            if (i.from === props.targetNickname && i.user !== props.myNickname) {
+                                return <li className='msgToMe' key={index}>
+                                    {i.message} <br /> <small className='smallName'>{i.user || i.from}</small>
+                                </li>
                             }
                             else {
-                                return <li className='msgFromMe' key={index}>{i.message}</li>
+                                return <li className='msgFromMe' key={index}>
+                                    {i.message} <br /> <small className='smallName'>{i.user || i.from}</small>
+                                </li>
                             }
                         })
 

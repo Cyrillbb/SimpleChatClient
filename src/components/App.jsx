@@ -13,6 +13,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import CreateRoom from './create-room-window/createRoom';
 import RoomInvite from './room-invite/roomInvite';
 import { getRooms } from './../actions/getRooms';
+import Header from './header/header';
 
 
 function App(props) {
@@ -67,13 +68,16 @@ function App(props) {
                                 <UsersWindow socket={props.socket} />
                                 <ChatWindow socket={props.socket} />
                             </div> :
-                            <LoginWindow socket={props.socket} />                            
+                            <div>
+                                <Header />
+                                <LoginWindow socket={props.socket} />
+                            </div>
                         }
                         {
-                            inviteModal ? <RoomInvite 
-                            roomName={roomName} 
-                            socket={socket}
-                            setModal={setInviteModal} /> : <div></div>
+                            inviteModal ? <RoomInvite
+                                roomName={roomName}
+                                socket={socket}
+                                setModal={setInviteModal} /> : <div></div>
                         }
                     </Route>
                     <Route exact path='/createRoom'>

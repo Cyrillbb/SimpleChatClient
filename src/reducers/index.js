@@ -15,5 +15,5 @@ export const rootReducer = combineReducers({
     msgTarget: msgTargetSetter,
     messages: messageReciever,
     new: newChecker,
-    rooms: roomsGetter,   
+    rooms: roomsGetter,
 })

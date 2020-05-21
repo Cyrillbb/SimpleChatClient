@@ -71,5 +71,11 @@
     border: solid black 1px;
     border-radius: 5px;
     width: max-content;
-    align-self: flex-start;
+    align-self: flex-start;    
+}
+
+.msgFromMe .smallName {
+    position: relative;
+    display: inline-block;    
+    text-align: right;
 }

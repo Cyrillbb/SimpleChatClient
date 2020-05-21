@@ -6,10 +6,10 @@ const initialState = {
 }
 
 export const loggerIn = (state = initialState, action) => {
-    switch(action.type) {
-        case(LOGIN): {
+    switch (action.type) {
+        case (LOGIN): {
             return action.payload
         }
-        default: return state        
+        default: return state
     }
 }

@@ -7,8 +7,8 @@ const initialState = {
 }
 
 export const userSetter = (state = initialState, action) => {
-    switch(action.type) {
-        case(SET_USER_INFO): {
+    switch (action.type) {
+        case (SET_USER_INFO): {
             return action.payload
         }
         default: return state
