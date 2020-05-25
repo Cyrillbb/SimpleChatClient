@@ -30,12 +30,22 @@ function ChatWindow(props) {
                         .map((i, index) => {
                             if (i.from === props.targetNickname && i.user !== props.myNickname) {
                                 return <li className='msgToMe' key={index}>
-                                    {i.message} <br /> <small className='smallName'>{i.user || i.from}</small>
+                                    <div style={{ margin: '0px' }}>
+                                        {i.message}
+                                    </div>
+                                    <div>
+                                        <small className='smallName'>{i.user || i.from}</small>
+                                    </div>
                                 </li>
                             }
                             else {
                                 return <li className='msgFromMe' key={index}>
-                                    {i.message} <br /> <small className='smallName'>{i.user || i.from}</small>
+                                    <div>
+                                        {i.message}
+                                    </div>
+                                    <div style={{textAlign: 'right'}}>
+                                        <small className='smallName'>{i.user || i.from}</small>
+                                    </div>
                                 </li>
                             }
                         })
@@ -44,7 +54,7 @@ function ChatWindow(props) {
                 </ul>
             </div>
             <form className='chatForm' onSubmit={handleSubmit}>
-                <input onChange={(e) => { setMsg(e.target.value) }} type="text" id="msg" />
+                <input onChange={(e) => { setMsg(e.target.value) }} autoComplete='off' type="text" id="msg" />
                 <button className='sendBtn' type='submit'><i className="far fa-paper-plane"></i></button>
             </form>
         </div>

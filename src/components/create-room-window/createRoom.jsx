@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-
+import './createRoom.css'
 
 function CreateRoom(props) {
     const [selectedUsers, setUsers] = useState([])
@@ -26,22 +26,23 @@ function CreateRoom(props) {
 
     return (
         <div className='createRoom'>
-            <label htmlFor="roomName">Enter room name</label>
-            <input type="text" id='roomName' onChange={(e) => setRoomName(e.target.value)} />
-            <ul>
+            <input type="text" id='roomName' placeholder='Enter room name' className='loginInpt' onChange={(e) => setRoomName(e.target.value)} />
+            <ul className='roomUserList'>
                 {props.users.map(i =>
-                    <div className='selectUserDiv'>
+                    <li className='selectUserDiv'>
                         <input type='checkbox' id={i.nickname} onChange={handleSelect} />
                         <label htmlFor={i.nickname}>{i.nickname}</label>
-                    </div>
+                    </li>
                 )}
             </ul>
-            <Link to='/'>
-                <button>Back</button>
-            </Link>
-            <Link to='/'>
-                <button onClick={handleCreateRoom}>Create chat room</button>
-            </Link>
+            <div className='btnGroup'>
+                <Link to='/'>
+                    <button className='formBtn'>Back</button>
+                </Link>
+                <Link to='/'>
+                    <button className='formBtn' onClick={handleCreateRoom}>Create chat room</button>
+                </Link>
+            </div>
         </div>
     )
 }

@@ -41,7 +41,6 @@ function App(props) {
             setRoomName(e)
         })
         socket.on('joined', e => {
-            alert(e)
             setInviteModal(false)
             getRooms(e)
         })
