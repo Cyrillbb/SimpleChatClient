@@ -8,10 +8,10 @@ function RoomInvite(props) {
         props.socket.emit('join room', { room: props.roomName, id: props.userInfo.id})
     }
 
-    // const handleDecline = () => {
-    //     props.setModal(false)
-    //     props.socket.emit('decline room', {room: props.roomName, user: props.userInfo.nickname})
-    // }
+    const handleDecline = () => {
+        props.setModal(false)
+        props.socket.emit('decline room', {room: props.roomName, user: props.userInfo.nickname})
+    }
 
     return (
         <div className='roomInvite'>
@@ -23,9 +23,9 @@ function RoomInvite(props) {
                     <button className='formBtn' onClick={handleJoinRoom}>
                         Join room
                     </button>
-                    {/* <button className='formBtn' onClick={handleDecline}>
+                    <button className='formBtn' onClick={handleDecline}>
                         Decline
-                    </button> */}
+                    </button>
                 </div>
             </div>
         </div>
