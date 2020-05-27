@@ -107,5 +107,20 @@
         height: 5vh;
         position: sticky;
         top: 0px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .counterResp {
+        display: inline-block;
+        background-color: red;
+        border: solid red 1px;
+        border-radius: 50%;
+        font-size: 2vh;
+        width: 3vh;
+        height: 3vh;
+        text-align: center;
+        margin-left: 1em;
+
     }
 }

@@ -17,6 +17,7 @@ function LoginWindow(props) {
     const handleCreate = (e) => {
         e.preventDefault()
         props.socket.emit('newUser', { nickname, password })
+        setLoginType('login')
     }
 
     return (

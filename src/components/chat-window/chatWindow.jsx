@@ -22,14 +22,20 @@ function ChatWindow(props) {
     }
 
     const handleRespMenu = () => {
-        props.usersRef.current.className === 'usersWindow' ? 
-        props.usersRef.current.className = 'usersWindow-resp' :
-        props.usersRef.current.className = 'usersWindow'
+        props.usersRef.current.className === 'usersWindow' ?
+            props.usersRef.current.className = 'usersWindow-resp' :
+            props.usersRef.current.className = 'usersWindow'
     }
 
     return (
         <div className='chatWindow'>
-            <div className='chatResMenu'><i onClick={handleRespMenu} class="fas fa-bars"></i></div>
+            <div className='chatResMenu'>
+                <i onClick={handleRespMenu} class="fas fa-bars"></i>
+                {props.new.length > 0 ?
+                    <span className='counterResp'>{props.new.length}</span> :
+                    undefined
+                }
+            </div>
             <div className='messageBox'>
                 <ul className='messageList' id='msgList'>
                     {props.messages
@@ -50,7 +56,7 @@ function ChatWindow(props) {
                                     <div>
                                         {i.message}
                                     </div>
-                                    <div style={{textAlign: 'right'}}>
+                                    <div style={{ textAlign: 'right' }}>
                                         <small className='smallName'>{i.user || i.from}</small>
                                     </div>
                                 </li>
@@ -72,7 +78,8 @@ const mapStateToProps = state => {
     return {
         myNickname: state.userInfo.nickname,
         targetNickname: state.msgTarget,
-        messages: state.messages
+        messages: state.messages,
+        new: state.new,
     }
 }
 
