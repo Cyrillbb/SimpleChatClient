@@ -21,8 +21,15 @@ function ChatWindow(props) {
         }
     }
 
+    const handleRespMenu = () => {
+        props.usersRef.current.className === 'usersWindow' ? 
+        props.usersRef.current.className = 'usersWindow-resp' :
+        props.usersRef.current.className = 'usersWindow'
+    }
+
     return (
         <div className='chatWindow'>
+            <div className='chatResMenu'><i onClick={handleRespMenu} class="fas fa-bars"></i></div>
             <div className='messageBox'>
                 <ul className='messageList' id='msgList'>
                     {props.messages

@@ -76,3 +76,27 @@
     width: 20px;
     height: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+    .usersWindow {
+        display: none;
+    }
+    .usersList {
+        height: 83vh;
+    }
+    .btnBlock {
+        height: 5vh;
+     }
+     .userHeader {
+         height: 5vh;
+     }
+    .usersWindow-resp {
+        display: block;
+        position: fixed;
+        top: 5vh;
+        height: 95vh;
+        width: 100vw;
+        z-index: 15;
+        background-color: rgba(0, 0, 0, 0.842);
+    }
+}

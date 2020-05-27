@@ -18,7 +18,7 @@ function UsersWindow(props) {
     }
 
     return (
-        <div className='usersWindow'>
+        <div ref={props.usersRef} className='usersWindow'>
             <h3 className='userHeader'>Logged in as {props.userInfo.nickname}</h3>
             <ul className='usersList'>
                 {props.usersList.filter(i => i.nickname !== props.userInfo.nickname).map(i =>
@@ -36,11 +36,11 @@ function UsersWindow(props) {
                     >
                         {i.nickname} {props.new.indexOf(i.nickname) > -1 ?
                             <span className='counter'>{props.new.filter(j => j === i.nickname).length}</span>
-                            : <div></div>}
+                            : undefined}
                     </li>
                 )}
                 {props.rooms.map(i =>
-                    <li id={i}
+                    <li key={i}
                         className='user'
                         onClick={(e) => {
                             props.setTarget(i);

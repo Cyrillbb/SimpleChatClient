@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux';
 import UsersWindow from './users-window/UsersWindow';
 import ChatWindow from './chat-window/chatWindow';
@@ -57,6 +57,8 @@ function App(props) {
 
     }, [target, socket, removeNew, newMsg])
 
+    const refUsersWindow = useRef(null)
+
     return (
         <div className='App'>
             <BrowserRouter>
@@ -64,9 +66,10 @@ function App(props) {
                     <Route exact path='/'>
                         {props.status ?
                             <div className='chat'>
-                                <UsersWindow socket={props.socket} />
-                                <ChatWindow socket={props.socket} />
-                            </div> :
+                                <UsersWindow usersRef={refUsersWindow} socket={props.socket} />
+                                <ChatWindow usersRef={refUsersWindow} socket={props.socket} />
+                            </div>
+                            :
                             <div>
                                 <Header />
                                 <LoginWindow socket={props.socket} />
@@ -76,7 +79,7 @@ function App(props) {
                             inviteModal ? <RoomInvite
                                 roomName={roomName}
                                 socket={socket}
-                                setModal={setInviteModal} /> : <div></div>
+                                setModal={setInviteModal} /> : undefined
                         }
                     </Route>
                     <Route exact path='/createRoom'>
