@@ -10,8 +10,7 @@ function LoginWindow(props) {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        props.socket.emit('logIn', { nickname, password })
-        props.logIn()
+        props.socket.emit('logIn', { nickname, password })        
     }
 
     const handleCreate = (e) => {
@@ -35,6 +34,7 @@ function LoginWindow(props) {
                         type="password"
                         placeholder='enter ur password'
                         id="pass" required
+                        onChange={e => { setPassword(e.target.value) }}
                     />
                     <div className='btnGroup'>
                         <button className='formBtn' type='submit'>Login</button>

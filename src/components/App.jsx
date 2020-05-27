@@ -14,16 +14,20 @@ import CreateRoom from './create-room-window/createRoom';
 import RoomInvite from './room-invite/roomInvite';
 import { getRooms } from './../actions/getRooms';
 import Header from './header/header';
+import { login } from './../actions/login';
 
 
 function App(props) {
 
-    const { socket, setUser, getUsers, recieveMsg, checkNew, target, removeNew, newMsg, getRooms } = props
+    const { socket, setUser, getUsers, recieveMsg, checkNew, target, removeNew, newMsg, getRooms, logIn } = props
 
     const [inviteModal, setInviteModal] = useState(false)
     const [roomName, setRoomName] = useState('')
 
     useEffect(() => {
+        socket.on('logIn', () => {
+            logIn()
+        })
         socket.on('urUserData', e => {
             setUser(e)
         })
@@ -47,7 +51,7 @@ function App(props) {
         socket.on('rooms', e => {
             getRooms(e)
         })
-    }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms])
+    }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn])
 
     useEffect(() => {
         if (target === newMsg[newMsg.length - 1]) {
@@ -109,7 +113,8 @@ const mapDispatchToProps = dispatch => {
         recieveMsg: (e) => dispatch(recieveMessages(e)),
         checkNew: (e) => dispatch(checkNew(e)),
         removeNew: (e) => dispatch(removeFromNew(e)),
-        getRooms: (e) => dispatch(getRooms(e))
+        getRooms: (e) => dispatch(getRooms(e)),
+        logIn: () => dispatch(login())
 
     }
 }
