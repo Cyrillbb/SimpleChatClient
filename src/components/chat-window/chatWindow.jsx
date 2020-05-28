@@ -35,6 +35,7 @@ function ChatWindow(props) {
                     <span className='counterResp'>{props.new.filter(i => i !== props.myNickname).length}</span> :
                     undefined
                 }
+                <span style={{marginLeft: '0.4em'}}>Current chat: {props.targetNickname}</span>
             </div>
             <div className='messageBox'>
                 <ul className='messageList' id='msgList'>

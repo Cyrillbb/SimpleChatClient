@@ -19,6 +19,11 @@ function UsersWindow(props) {
         setCurrent(e.target)
         e.target.classList.add('controlsHighlighted')
     }
+    const handleRespMenu = () => {
+        props.usersRef.current.className === 'usersWindow' ?
+            props.usersRef.current.className = 'usersWindow-resp' :
+            props.usersRef.current.className = 'usersWindow'
+    }
 
     return (
         <div ref={props.usersRef} className='usersWindow'>
@@ -44,6 +49,7 @@ function UsersWindow(props) {
                                     document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
                                 }, 50);
                                 handleHighlight(e)
+                                handleRespMenu()
                             }}
                         >
                             {i.nickname} {props.new.indexOf(i.nickname) > -1 ?
@@ -61,6 +67,7 @@ function UsersWindow(props) {
                                     document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
                                 }, 50);
                                 handleHighlight(e)
+                                handleRespMenu()
                             }}
                         >
                             {i}
@@ -70,10 +77,10 @@ function UsersWindow(props) {
                             <i className="fas fa-times-circle" onClick={() => {
                                 props.socket.emit('decline room', { room: i, user: props.userInfo.nickname })
                             }}></i>
-                            <i className="far fa-plus-square" onClick={() => addUsersRef.current.className='addUsers-v'}></i>
+                            <i className="far fa-plus-square" onClick={() => addUsersRef.current.className = 'addUsers-v'}></i>
                         </li>
                     )}
-            </ul>            
+            </ul>
             <div className='btnBlock'>
                 <Link to='/createRoom'>
                     <button className='controls'>Create room</button>

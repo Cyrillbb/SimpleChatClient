@@ -26,7 +26,7 @@ const AddUsers = props => {
         <div className='addUsers' ref={props.addRef}>
             <ul className='roomUserList'>
                 {props.users.map(i =>
-                    <li className='selectUserDiv'>
+                    <li key={i.nickname} className='selectUserDiv'>
                         <input type='checkbox' id={i.nickname} onChange={handleSelect} />
                         <label htmlFor={i.nickname}>{i.nickname}</label>
                     </li>

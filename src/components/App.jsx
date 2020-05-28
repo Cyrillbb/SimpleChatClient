@@ -70,9 +70,12 @@ function App(props) {
                 <Switch>
                     <Route exact path='/'>
                         {props.status ?
-                            <div className='chat'>
-                                <UsersWindow usersRef={refUsersWindow} socket={props.socket} />
-                                <ChatWindow usersRef={refUsersWindow} socket={props.socket} />
+                            <div>
+                                <Header />
+                                <div className='chat'>
+                                    <UsersWindow usersRef={refUsersWindow} socket={props.socket} />
+                                    <ChatWindow usersRef={refUsersWindow} socket={props.socket} />
+                                </div>
                             </div>
                             :
                             <div>

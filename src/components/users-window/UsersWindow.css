@@ -2,7 +2,7 @@
     background-color: #001f3f;   
     width: 300px;
     max-width: 300px;
-    height: 600px;
+    height: 96vh;
     border: solid grey 1px;
     display: flex;
     flex-direction: column;
@@ -17,16 +17,16 @@
     scrollbar-width: thin;
 }
 
-.userHeader {
+.userHeader {    
     background-color: #00478f; 
     color: white;
     border-bottom: solid 1px grey;    
     text-align: center;
     vertical-align: middle;
-    padding: 5px 0 5px 0;
+    padding-top: 0.4em;
     margin: 0 auto;
     width: 100%;
-    height: 5%;
+    height: 4vh;
     
 }
 
@@ -47,7 +47,7 @@
 }
 
 .btnBlock {
-   height: 5%;
+   height: 4vh;
 }
 
 .controls {
