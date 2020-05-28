@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 function RoomInvite(props) {
 
     const handleJoinRoom = () => {
+        console.log('JOIN')
         props.socket.emit('join room', { room: props.roomName, nickname: props.userInfo.nickname})
     }
 
