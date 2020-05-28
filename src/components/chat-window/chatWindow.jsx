@@ -30,9 +30,9 @@ function ChatWindow(props) {
     return (
         <div className='chatWindow'>
             <div className='chatResMenu'>
-                <i onClick={handleRespMenu} class="fas fa-bars"></i>
-                {props.new.length > 0 ?
-                    <span className='counterResp'>{props.new.length}</span> :
+                <i onClick={handleRespMenu} className="fas fa-bars"></i>
+                {props.new.filter(i => i !== props.myNickname).length > 0 ?
+                    <span className='counterResp'>{props.new.filter(i => i !== props.myNickname).length}</span> :
                     undefined
                 }
             </div>

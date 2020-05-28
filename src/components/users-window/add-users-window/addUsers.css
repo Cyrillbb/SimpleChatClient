@@ -1,0 +1,13 @@
+.addUsers {
+    display: none;
+}
+
+.addUsers-v {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.794);
+    top: 0px;
+    color: white;
+    left: 0px;
+}
