@@ -19,22 +19,26 @@ function UsersWindow(props) {
         setCurrent(e.target)
         e.target.classList.add('controlsHighlighted')
     }
-    const handleRespMenu = () => {
-        props.usersRef.current.className === 'usersWindow' ?
-            props.usersRef.current.className = 'usersWindow-resp' :
-            props.usersRef.current.className = 'usersWindow'
-    }
 
     return (
         <div ref={props.usersRef} className='usersWindow'>
             <AddUsers addRef={addUsersRef} current={current} socket={props.socket} />
-            <h3 className='userHeader'>Logged in as {props.userInfo.nickname} {props.new.filter(i => i !== props.myNickname).length > 0 ?
-                <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
-                undefined
-            }</h3>
+            <h3 className='userHeader'>Logged in as {props.userInfo.nickname}</h3>
             <div className='btnBlock'>
-                <button className='controls' onClick={() => setView('users')}>Show users online</button>
-                <button className='controls' onClick={() => setView('rooms')}>Show rooms</button>
+                <button className='controls' onClick={() => setView('users')}>
+                    Show users online
+                    {props.new.filter(i => i !== props.myNickname && props.usersList.find(item => item.nickname === i)).length > 0 ?
+                    <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
+                    undefined
+                    }
+                </button>
+                <button className='controls' onClick={() => setView('rooms')}>
+                    Show rooms
+                    {props.new.filter(i => i !== props.myNickname && props.rooms.find(item => item === i)).length > 0 ?
+                    <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
+                    undefined
+                    }
+                </button>
             </div>
             <ul className='usersList'>
                 {view === 'users' ?
@@ -49,7 +53,7 @@ function UsersWindow(props) {
                                     document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
                                 }, 50);
                                 handleHighlight(e)
-                                handleRespMenu()
+                                props.usersRef.current.className = 'usersWindow'
                             }}
                         >
                             {i.nickname} {props.new.indexOf(i.nickname) > -1 ?
@@ -67,7 +71,7 @@ function UsersWindow(props) {
                                     document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
                                 }, 50);
                                 handleHighlight(e)
-                                handleRespMenu()
+                                props.usersRef.current.className = 'usersWindow'
                             }}
                         >
                             {i}
@@ -75,7 +79,7 @@ function UsersWindow(props) {
                                 <span className='counter'>{props.new.filter(j => j === i).length}</span>
                                 : undefined}
                             <i className="fas fa-times-circle" onClick={() => {
-                                props.socket.emit('decline room', { room: i, user: props.userInfo.nickname })
+                                props.socket.emit('decline room', { room: i, nickname: props.userInfo.nickname })
                             }}></i>
                             <i className="far fa-plus-square" onClick={() => addUsersRef.current.className = 'addUsers-v'}></i>
                         </li>

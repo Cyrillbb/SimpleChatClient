@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 function RoomInvite(props) {
 
     const handleJoinRoom = () => {
-        props.socket.emit('join room', { room: props.roomName, id: props.userInfo.id})
+        props.socket.emit('join room', { room: props.roomName, nickname: props.userInfo.nickname})
     }
 
     const handleDecline = () => {
         props.setModal(false)
-        props.socket.emit('decline room', {room: props.roomName, user: props.userInfo.nickname})
+        props.socket.emit('decline room', {room: props.roomName, nickname: props.userInfo.nickname})
     }
 
     return (

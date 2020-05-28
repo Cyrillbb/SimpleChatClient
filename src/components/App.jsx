@@ -51,7 +51,7 @@ function App(props) {
         socket.on('rooms', e => {
             getRooms(e)
         })
-        socket.on('error', e => alert(e))
+        socket.on('eb', e => alert(e))
     }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn])
 
     useEffect(() => {
