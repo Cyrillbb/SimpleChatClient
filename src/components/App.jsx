@@ -44,7 +44,7 @@ function App(props) {
             setInviteModal(true)
             setRoomName(e)
         })
-        socket.on('joined', e => {            
+        socket.on('joined', e => {
             setInviteModal(false)
             getRooms(e)
         })
@@ -91,6 +91,12 @@ function App(props) {
                         }
                     </Route>
                     <Route exact path='/createRoom'>
+                        {
+                            inviteModal ? <RoomInvite
+                                roomName={roomName}
+                                socket={socket}
+                                setModal={setInviteModal} /> : undefined
+                        }
                         <CreateRoom socket={socket} />
                     </Route>
                 </Switch>

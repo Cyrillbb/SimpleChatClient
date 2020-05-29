@@ -34,7 +34,7 @@ function UsersWindow(props) {
                 </button>
                 <button className='controls' onClick={() => setView('rooms')}>
                     Show rooms
-                    {props.new.filter(i => i !== props.myNickname && props.rooms.find(item => item === i)).length > 0 ?
+                    {props.new.filter(i => i !== props.myNickname && props.rooms.find(item => item.roomName === i)).length > 0 ?
                     <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
                     undefined
                     }
@@ -62,11 +62,11 @@ function UsersWindow(props) {
                         </li>
                     ) :
                     props.rooms.map(i =>
-                        <li key={i}
+                        <li key={i.roomName}
                             className='user'
                             onClick={(e) => {
-                                props.setTarget(i);
-                                props.checkNew(i);
+                                props.setTarget(i.roomName);
+                                props.checkNew(i.roomName);
                                 setTimeout(() => {
                                     document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
                                 }, 50);
@@ -74,12 +74,12 @@ function UsersWindow(props) {
                                 props.usersRef.current.className = 'usersWindow'
                             }}
                         >
-                            {i}
-                            {i.nickname} {props.new.indexOf(i) > -1 ?
-                                <span className='counter'>{props.new.filter(j => j === i).length}</span>
+                            {i.roomName}
+                            {i.nickname} {props.new.indexOf(i.roomName) > -1 ?
+                                <span className='counter'>{props.new.filter(j => j === i.roomName).length}</span>
                                 : undefined}
                             <i className="fas fa-times-circle" onClick={() => {
-                                props.socket.emit('decline room', { room: i, nickname: props.userInfo.nickname })
+                                props.socket.emit('decline room', { room: i.roomName, nickname: props.userInfo.nickname })
                             }}></i>
                             <i className="far fa-plus-square" onClick={() => addUsersRef.current.className = 'addUsers-v'}></i>
                         </li>

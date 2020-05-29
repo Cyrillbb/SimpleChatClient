@@ -35,8 +35,20 @@ function ChatWindow(props) {
                     <span className='counterResp'>{props.new.filter(i => i !== props.myNickname).length}</span> :
                     undefined
                 }
-                <span style={{marginLeft: '0.4em'}}>Current chat: {props.targetNickname}</span>
+
             </div>
+            {props.rooms.find(i => i.roomName === props.targetNickname) ?
+                <div className='roomInfo'>
+                    <span>
+                        Room: {props.targetNickname}
+                        <span style={{marginTop: '0px'}}>members: {props.rooms.find(i => i.roomName === props.targetNickname).users.map(item =>
+                            <span style={{marginTop: '0px'}} key={item}>{item}</span>
+                        )}
+                        </span>
+                    </span>
+                </div> : <div className='roomInfo'>
+                    <span style={{ marginLeft: '0.4em' }}>Current chat: {props.targetNickname}</span>
+                </div>}
             <div className='messageBox'>
                 <ul className='messageList' id='msgList'>
                     {props.messages
@@ -81,6 +93,7 @@ const mapStateToProps = state => {
         targetNickname: state.msgTarget,
         messages: state.messages,
         new: state.new,
+        rooms: state.rooms,
     }
 }
 
