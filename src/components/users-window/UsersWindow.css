@@ -90,7 +90,7 @@
     color: rgb(0, 247, 255);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
     .usersWindow {
         display: none;
     }
