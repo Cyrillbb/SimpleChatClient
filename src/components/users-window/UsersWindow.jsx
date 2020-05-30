@@ -78,8 +78,10 @@ function UsersWindow(props) {
                             {i.nickname} {props.new.indexOf(i.roomName) > -1 ?
                                 <span className='counter'>{props.new.filter(j => j === i.roomName).length}</span>
                                 : undefined}
-                            <i className="fas fa-times-circle" onClick={() => {
+                            <i className="fas fa-times-circle" onClick={(e) => {
+                                e.stopPropagation()
                                 props.socket.emit('decline room', { room: i.roomName, nickname: props.userInfo.nickname })
+                                props.setTarget('')
                             }}></i>
                             <i className="far fa-plus-square" onClick={() => addUsersRef.current.className = 'addUsers-v'}></i>
                         </li>

@@ -151,3 +151,24 @@
         
     }
 }
+
+@media only screen and (max-height: 400px) {
+    .chatResMenu {
+        height: 6%;
+        font-size: smaller;
+    }
+
+    .roomInfo {
+        top: 6%;
+        height: 6%;
+        font-size: smaller;
+    }
+    .messageBox {
+        top: 12%;
+        height: 78%;
+    }
+    .chatForm {
+        top: 90%;
+        height: 10%;
+    }
+}
