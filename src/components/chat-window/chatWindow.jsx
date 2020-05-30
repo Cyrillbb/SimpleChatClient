@@ -40,8 +40,8 @@ function ChatWindow(props) {
             {props.rooms.find(i => i.roomName === props.targetNickname) ?
                 <div className='roomInfo'>
                     <span>
-                        Room: {props.targetNickname}
-                        <span style={{marginTop: '0px'}}>members: {props.rooms.find(i => i.roomName === props.targetNickname).users.map(item =>
+                        {props.targetNickname}:
+                        <span style={{marginTop: '0px'}}>{props.rooms.find(i => i.roomName === props.targetNickname).users.map(item =>
                             <span style={{marginTop: '0px'}} key={item}>{item}</span>
                         )}
                         </span>
