@@ -15,6 +15,7 @@ import RoomInvite from './room-invite/roomInvite';
 import { getRooms } from './../actions/getRooms';
 import Header from './header/header';
 import { login } from './../actions/login';
+import ErrorModal from './error-modal/ErrorModal';
 
 
 function App(props) {
@@ -23,6 +24,8 @@ function App(props) {
 
     const [inviteModal, setInviteModal] = useState(false)
     const [roomName, setRoomName] = useState('')
+    const [errorText, setErrorText] = useState('')
+    const errorModal = useRef(null)
 
     useEffect(() => {
         socket.on('logIn', () => {
@@ -51,7 +54,10 @@ function App(props) {
         socket.on('rooms', e => {
             getRooms(e)
         })
-        socket.on('eb', e => alert(e))
+        socket.on('eb', e => {
+            setErrorText(e)
+            errorModal.current.className = "errorModal-visible"
+        })
     }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn])
 
     useEffect(() => {
@@ -75,12 +81,14 @@ function App(props) {
                                 <div className='chat'>
                                     <UsersWindow usersRef={refUsersWindow} socket={props.socket} />
                                     <ChatWindow usersRef={refUsersWindow} socket={props.socket} />
+                                    <ErrorModal errorRef={errorModal} errorText={errorText} />
                                 </div>
                             </div>
                             :
                             <div>
                                 <Header />
                                 <LoginWindow socket={props.socket} />
+                                <ErrorModal errorRef={errorModal} errorText={errorText} />
                             </div>
                         }
                         {
@@ -98,6 +106,7 @@ function App(props) {
                                 setModal={setInviteModal} /> : undefined
                         }
                         <CreateRoom socket={socket} />
+                        <ErrorModal errorRef={errorModal} errorText={errorText} />
                     </Route>
                 </Switch>
             </BrowserRouter>

@@ -1,0 +1,29 @@
+.errorModal {
+    display: none;
+}
+
+.errorModal-visible {
+    display: block;
+    display: flex;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    flex-direction: column;
+    max-width: 600px;
+    align-items: center;
+    justify-content: center;    
+    background-color: #001f3f;
+    border-radius: 0.3em;
+    color: white;
+    z-index: 15;
+    animation: 0.5s linear slidein;
+}
+
+@keyframes slidein {
+    from {
+        transform: translateY(-600px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}

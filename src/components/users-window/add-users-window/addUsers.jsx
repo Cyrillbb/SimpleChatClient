@@ -24,17 +24,20 @@ const AddUsers = props => {
 
     return (
         <div className='addUsers' ref={props.addRef}>
-            <ul className='roomUserList'>
-                {props.users.map(i =>
-                    <li key={i.nickname} className='selectUserDiv'>
-                        <input type='checkbox' id={i.nickname} onChange={handleSelect} />
-                        <label htmlFor={i.nickname}>{i.nickname}</label>
-                    </li>
-                )}
-            </ul>
-            <div className='btnGroup'>
-                <button className='formBtn' onClick={() => {props.addRef.current.className = 'addUsers'}}>Back</button>
-                <button className='formBtn' onClick={handleAddUsers}>Add users</button>
+            <div className='invBody'>
+                <h3>Check users that you wish to invite</h3>
+                <ul className='roomUserList'>
+                    {props.users.map(i =>
+                        <li key={i.nickname} className='selectUserDiv'>
+                            <input type='checkbox' id={i.nickname} onChange={handleSelect} />
+                            <label htmlFor={i.nickname}>{i.nickname}</label>
+                        </li>
+                    )}
+                </ul>
+                <div className='btnGroup'>
+                    <button className='formBtn' onClick={() => { props.addRef.current.className = 'addUsers' }}>Back</button>
+                    <button className='formBtn' onClick={handleAddUsers}>Add users</button>
+                </div>
             </div>
         </div>
     )
