@@ -4,6 +4,7 @@ import './chatWindow.css'
 
 function ChatWindow(props) {
     const [msg, setMsg] = useState('')
+    const imgRegEx = /png$|jpg$|jpeg$|gif$/gm
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -41,8 +42,8 @@ function ChatWindow(props) {
                 <div className='roomInfo'>
                     <span>
                         {props.targetNickname}:
-                        <span style={{marginTop: '0px'}}>{props.rooms.find(i => i.roomName === props.targetNickname).users.map(item =>
-                            <span style={{marginTop: '0px'}} key={item}>{item}</span>
+                        <span style={{ marginTop: '0px' }}>{props.rooms.find(i => i.roomName === props.targetNickname).users.map(item =>
+                            <span style={{ marginTop: '0px' }} key={item}>{item}</span>
                         )}
                         </span>
                     </span>
@@ -57,7 +58,12 @@ function ChatWindow(props) {
                             if (i.from === props.targetNickname && i.user !== props.myNickname) {
                                 return <li className='msgToMe' key={index}>
                                     <div style={{ margin: '0px' }}>
-                                        {i.message}
+                                        {imgRegEx.test(i.message) ?
+                                            <a target="_blank" rel="noopener noreferrer" href={i.message}>
+                                                <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt="" />
+                                            </a> :
+                                            i.message
+                                        }
                                     </div>
                                     <div>
                                         <small className='smallName'>{i.user || i.from}</small>
@@ -67,7 +73,12 @@ function ChatWindow(props) {
                             else {
                                 return <li className='msgFromMe' key={index}>
                                     <div>
-                                        {i.message}
+                                        {imgRegEx.test(i.message) ?
+                                            <a target="_blank" rel="noopener noreferrer" href={i.message}>
+                                                <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt="" />
+                                            </a> :
+                                            i.message
+                                        }
                                     </div>
                                     <div style={{ textAlign: 'right' }}>
                                         <small className='smallName'>{i.user || i.from}</small>

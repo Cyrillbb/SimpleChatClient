@@ -9,7 +9,7 @@ const ErrorModal = (props) => {
 
     return (
         <div ref={props.errorRef} className='errorModal'>
-            <h3>{props.errorText}</h3>
+            <h3 style={{margin: '3px'}}>{props.errorText}</h3>
             <button className='formBtn' onClick={handleHideError}>Ok</button>
         </div>
     )
