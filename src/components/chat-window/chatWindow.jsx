@@ -33,10 +33,11 @@ function ChatWindow(props) {
             <div className='chatResMenu'>
                 <i onClick={handleRespMenu} className="fas fa-bars"></i>
                 {props.new.filter(i => i !== props.myNickname).length > 0 ?
-                    <span className='counterResp'>{props.new.filter(i => i !== props.myNickname).length}</span> :
+                    <span className='counterResp'>{props.new.filter(i => i !== props.myNickname).length}</span>
+                    :
                     undefined
                 }
-
+                <span className='respHeader'>Simple chat</span>
             </div>
             {props.rooms.find(i => i.roomName === props.targetNickname) ?
                 <div className='roomInfo'>
@@ -60,7 +61,7 @@ function ChatWindow(props) {
                                     <div style={{ margin: '0px' }}>
                                         {imgRegEx.test(i.message) ?
                                             <a target="_blank" rel="noopener noreferrer" href={i.message}>
-                                                <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt="" />
+                                                <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt={i.message} />
                                             </a> :
                                             i.message
                                         }
@@ -75,7 +76,7 @@ function ChatWindow(props) {
                                     <div>
                                         {imgRegEx.test(i.message) ?
                                             <a target="_blank" rel="noopener noreferrer" href={i.message}>
-                                                <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt="" />
+                                                <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt={i.message} />
                                             </a> :
                                             i.message
                                         }

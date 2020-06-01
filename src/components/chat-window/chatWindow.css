@@ -126,6 +126,12 @@
         width: 100vw;
         top: 0px;
     }
+    .respHeader {
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        margin-left: -12.5vw;
+    }
     .roomInfo {
         position: fixed;
         height: 4%;
