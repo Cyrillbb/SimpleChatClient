@@ -127,8 +127,8 @@
     }
     .chatResMenu {
         display: block;
-        background-color: #0074D9;
-        color: white;
+        background-color: #23395d;
+        color: grey;
         font-size: 2.9vh;
         text-align: left;
         padding: 0.2em;
@@ -141,7 +141,7 @@
         display: inline-block;
         position: absolute;
         left: 50%;
-        margin-left: -12.5vw;
+        margin-left: -12.5%;
     }
     .roomInfo {
         position: fixed;
