@@ -18,8 +18,9 @@
 }
 
 .userHeader {
-    background-color: #00478f;
-    color: white;
+    box-sizing: border-box;
+    background-color: #23395d;
+    color: grey;    
     border-bottom: solid 1px grey;
     text-align: center;
     vertical-align: middle;
@@ -52,7 +53,8 @@
 .controls {
     width: 50%;
     height: 100%;
-    background-color: #0074D9;
+    background-color: #23395d;
+    color: grey;
     text-decoration: none;
     display: inline-block;
     border: none;

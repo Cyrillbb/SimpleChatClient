@@ -75,7 +75,7 @@ function ChatWindow(props) {
                                 return <li className='msgFromMe' key={index}>
                                     <div>
                                         {imgRegEx.test(i.message) ?
-                                            <a target="_blank" rel="noopener noreferrer" href={i.message}>
+                                            <a target="_blank" style={{textDecoration: 'none'}} rel="noopener noreferrer" href={i.message}>
                                                 <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt={i.message} />
                                             </a> :
                                             i.message
@@ -92,7 +92,7 @@ function ChatWindow(props) {
                 </ul>
             </div>
             <form className='chatForm' onSubmit={handleSubmit}>
-                <input onChange={(e) => { setMsg(e.target.value) }} autoComplete='off' type="text" id="msg" />
+                <input className='msgInput' onChange={(e) => { setMsg(e.target.value) }} placeholder='message...' autoComplete='off' type="text" id="msg" />
                 <button className='sendBtn' type='submit'><i className="far fa-paper-plane"></i></button>
             </form>
         </div>
