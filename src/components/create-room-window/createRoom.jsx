@@ -26,7 +26,7 @@ function CreateRoom(props) {
 
     return (
         <div className='createRoom'>
-            <input type="text" id='roomName' placeholder='Enter room name' className='loginInpt' onChange={(e) => setRoomName(e.target.value)} />
+            <input type="text" id='roomName' placeholder='Enter room name' className='loginInpt' autoComplete='off' onChange={(e) => setRoomName(e.target.value)} />
             <ul className='roomUserList'>
                 {props.users.map(i =>
                     <li key={i.nickname} className='selectUserDiv'>
