@@ -70,7 +70,7 @@
 
 .msgFromMe {
     background-color: #d9ecff;
-    max-width: 30%;
+    max-width: 60%;
     margin: 5px;
     word-wrap: break-word;
     padding: 5px;
@@ -81,7 +81,7 @@
 
 .msgToMe {
     background-color: #efefef;
-    max-width: 30%;
+    max-width: 60%;
     margin: 5px;
     word-wrap: break-word;
     padding: 5px;
