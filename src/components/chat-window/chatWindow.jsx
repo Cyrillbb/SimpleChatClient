@@ -4,11 +4,11 @@ import './chatWindow.css'
 
 function ChatWindow(props) {
     const [msg, setMsg] = useState('')
-    const imgRegEx = /png$|jpg$|jpeg$|gif$/gm
+    const imgRegEx = /png$|jpg$|jpeg$|gif$/
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (props.targetNickname.length !== 0) {
+        if (props.targetNickname.length !== 0 && msg.split(' ').join('').length !== 0) {
             props.socket.emit('message', {
                 message: msg,
                 from: props.myNickname,
@@ -60,7 +60,7 @@ function ChatWindow(props) {
                                 return <li className='msgToMe' key={index}>
                                     <div style={{ margin: '0px' }}>
                                         {imgRegEx.test(i.message) ?
-                                            <a target="_blank" rel="noopener noreferrer" href={i.message}>
+                                            <a target="_blank" className='imgLink' rel="noopener noreferrer" href={i.message}>
                                                 <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt={i.message} />
                                             </a> :
                                             i.message
@@ -75,7 +75,7 @@ function ChatWindow(props) {
                                 return <li className='msgFromMe' key={index}>
                                     <div>
                                         {imgRegEx.test(i.message) ?
-                                            <a target="_blank" style={{textDecoration: 'none'}} rel="noopener noreferrer" href={i.message}>
+                                            <a target="_blank" className='imgLink' style={{ textDecoration: 'none' }} rel="noopener noreferrer" href={i.message}>
                                                 <img src={i.message} style={{ maxWidth: '100%', maxHeight: '100%' }} alt={i.message} />
                                             </a> :
                                             i.message

@@ -108,6 +108,14 @@
     text-align: right;
 }
 
+.imgLink {
+    text-decoration: none;    
+    color: white;
+}
+.imgLink:link {
+    color: white;
+}
+
 @media only screen and (max-width: 750px) {
     .chatWindow {
         width: 100%;
