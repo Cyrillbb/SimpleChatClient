@@ -50,7 +50,7 @@ function UsersWindow(props) {
                                 props.setTarget(i.nickname);
                                 props.checkNew(i.nickname);
                                 setTimeout(() => {
-                                    document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+                                    props.msgRef.current.scrollTop = props.msgRef.current.scrollHeight
                                 }, 50);
                                 handleHighlight(e)
                                 props.usersRef.current.className = 'usersWindow'
@@ -68,7 +68,7 @@ function UsersWindow(props) {
                                 props.setTarget(i.roomName);
                                 props.checkNew(i.roomName);
                                 setTimeout(() => {
-                                    document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+                                    props.msgRef.current.scrollTop = props.msgRef.current.scrollHeight
                                 }, 50);
                                 handleHighlight(e)
                                 props.usersRef.current.className = 'usersWindow'

@@ -1,9 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import './chatWindow.css'
+import { useEffect } from 'react'
+import { removeFromNew } from './../../actions/removeFromNew';
+
+
 
 function ChatWindow(props) {
     const [msg, setMsg] = useState('')
+    const { socket, targetNickname, removeNew, newMsg, msgRef } = props
+    const msgForm = useRef(null)
+    
+    useEffect(() => {
+        if (targetNickname === newMsg[newMsg.length - 1]) {
+            msgRef.current.scrollTop = msgRef.current.scrollHeight
+            removeNew(newMsg[newMsg.length - 1])
+        }
+
+    }, [targetNickname, socket, removeNew, newMsg, msgRef])
+
     const imgRegEx = /png$|jpg$|jpeg$|gif$/
 
     const handleSubmit = (e) => {
@@ -15,12 +30,14 @@ function ChatWindow(props) {
                 to: props.targetNickname
             })
             setMsg('')
-            document.getElementById('msg').value = ''
+            msgForm.current.value = ''
             setTimeout(() => {
-                document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
+                msgRef.current.scrollTop = msgRef.current.scrollHeight
             }, 500)
         }
     }
+
+
 
     const handleRespMenu = () => {
         props.usersRef.current.className === 'usersWindow' ?
@@ -32,8 +49,8 @@ function ChatWindow(props) {
         <div className='chatWindow'>
             <div className='chatResMenu'>
                 <i onClick={handleRespMenu} className="fas fa-bars"></i>
-                {props.new.filter(i => i !== props.myNickname).length > 0 ?
-                    <span className='counterResp'>{props.new.filter(i => i !== props.myNickname).length}</span>
+                {props.newMsg.filter(i => i !== props.myNickname).length > 0 ?
+                    <span className='counterResp'>{props.newMsg.filter(i => i !== props.myNickname).length}</span>
                     :
                     undefined
                 }
@@ -52,7 +69,7 @@ function ChatWindow(props) {
                     <span style={{ marginLeft: '0.4em' }}>Current chat: {props.targetNickname}</span>
                 </div>}
             <div className='messageBox'>
-                <ul className='messageList' id='msgList'>
+                <ul className='messageList' ref={props.msgRef}>
                     {props.messages
                         .filter(i => i.to === props.targetNickname || i.from === props.targetNickname)
                         .map((i, index) => {
@@ -92,7 +109,7 @@ function ChatWindow(props) {
                 </ul>
             </div>
             <form className='chatForm' onSubmit={handleSubmit}>
-                <input className='msgInput' onChange={(e) => { setMsg(e.target.value) }} placeholder='message...' autoComplete='off' type="text" id="msg" />
+                <input className='msgInput' onChange={(e) => { setMsg(e.target.value) }} placeholder='message...' autoComplete='off' type="text" ref={msgForm} id="msg" />
                 <button className='sendBtn' type='submit'><i className="far fa-paper-plane"></i></button>
             </form>
         </div>
@@ -104,9 +121,15 @@ const mapStateToProps = state => {
         myNickname: state.userInfo.nickname,
         targetNickname: state.msgTarget,
         messages: state.messages,
-        new: state.new,
+        newMsg: state.new,
         rooms: state.rooms,
     }
 }
 
-export default connect(mapStateToProps, null)(ChatWindow)
+const mapDispatchToProps = dispatch => {
+    return {
+        removeNew: (e) => dispatch(removeFromNew(e)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatWindow)

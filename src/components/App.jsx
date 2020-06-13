@@ -20,12 +20,12 @@ import ErrorModal from './error-modal/ErrorModal';
 
 function App(props) {
 
-    const { socket, setUser, getUsers, recieveMsg, checkNew, target, removeNew, newMsg, getRooms, logIn } = props
-
+    const { socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn } = props
     const [inviteModal, setInviteModal] = useState(false)
     const [roomName, setRoomName] = useState('')
     const [errorText, setErrorText] = useState('')
     const errorModal = useRef(null)
+    const msgListRef = useRef(null)
 
     useEffect(() => {
         socket.on('logIn', () => {
@@ -60,13 +60,7 @@ function App(props) {
         })
     }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn])
 
-    useEffect(() => {
-        if (target === newMsg[newMsg.length - 1]) {
-            document.getElementById('msgList').scrollTop = document.getElementById('msgList').scrollHeight
-            removeNew(newMsg[newMsg.length - 1])
-        }
 
-    }, [target, socket, removeNew, newMsg])
 
     const refUsersWindow = useRef(null)
 
@@ -79,8 +73,8 @@ function App(props) {
                             <div>
                                 <Header />
                                 <div className='chat'>
-                                    <UsersWindow usersRef={refUsersWindow} socket={props.socket} />
-                                    <ChatWindow usersRef={refUsersWindow} socket={props.socket} />
+                                    <UsersWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={props.socket} />
+                                    <ChatWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={props.socket} />
                                     <ErrorModal errorRef={errorModal} errorText={errorText} />
                                 </div>
                             </div>

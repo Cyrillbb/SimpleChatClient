@@ -3,6 +3,8 @@ import { login } from './../../actions/login';
 import { connect } from 'react-redux';
 import './LoginWindow.css'
 
+
+
 function LoginWindow(props) {
     const [nickname, setNickname] = useState('')
     const [password, setPassword] = useState('')
@@ -17,6 +19,8 @@ function LoginWindow(props) {
         e.preventDefault()
         props.socket.emit('newUser', { nickname, password })
         setLoginType('login')
+        setNickname('')
+        setPassword('')
     }
 
     return (
