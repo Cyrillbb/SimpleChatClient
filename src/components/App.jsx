@@ -16,6 +16,7 @@ import { getRooms } from './../actions/getRooms';
 import Header from './header/header';
 import { login } from './../actions/login';
 import ErrorModal from './error-modal/ErrorModal';
+import sound from '../assets/not.mp3'
 
 
 function App(props) {
@@ -40,6 +41,8 @@ function App(props) {
         socket.on('send messages', e => {
             recieveMsg(e)
             checkNew(e)
+            const audio = new Audio(sound)            
+            audio.play()
         })
         socket.on('msgHistory', e => recieveMsg(e))
         socket.on('room invite', e => {
@@ -75,7 +78,7 @@ function App(props) {
                                 <div className='chat'>
                                     <UsersWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={props.socket} />
                                     <ChatWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={props.socket} />
-                                    <ErrorModal errorRef={errorModal} errorText={errorText} />
+                                    <ErrorModal errorRef={errorModal} errorText={errorText} />                                                                       
                                 </div>
                             </div>
                             :
