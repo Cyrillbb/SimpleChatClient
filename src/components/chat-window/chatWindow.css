@@ -102,6 +102,10 @@
     color: white;
 }
 
+.smallName {
+    color: rgb(112, 176, 194);
+}
+
 .msgFromMe .smallName {
     position: relative;
     display: inline-block;
