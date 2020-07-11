@@ -6,4 +6,4 @@ export const setUser = (data) => {
         type: SET_USER_INFO,
         payload: data,
     }
-}
+};

@@ -1,4 +1,4 @@
-import { LOGIN } from "./action-types"
+import { LOGIN } from "./action-types";
 
 export const login = () => {
     return {
@@ -7,4 +7,4 @@ export const login = () => {
             loggedIn: true
         }
     }
-}
+};

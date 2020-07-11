@@ -6,4 +6,4 @@ export const removeFromNew = (nick) => {
         type: REMOVE_FROM_NEW,
         payload: nick
     }
-}
+};

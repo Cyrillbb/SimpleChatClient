@@ -12,4 +12,4 @@ export const recieveMessages = (data) => {
         type: RECIEVE_MESSAGES,
         payload: msg
     }
-}
+};

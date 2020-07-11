@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { setMsgtarget } from './../../actions/setMsgTarget';
-import './UsersWindow.css'
+import './UsersWindow.css';
 import { removeFromNew } from './../../actions/removeFromNew';
 import { Link } from 'react-router-dom';
 import AddUsers from './add-users-window/addUsers';
 import { useRef } from 'react';
 
 function UsersWindow(props) {
-    const addUsersRef = useRef(null)
-    const [current, setCurrent] = useState('')
-    const [view, setView] = useState('users')
+    const addUsersRef = useRef(null);
+    const [current, setCurrent] = useState('');
+    const [view, setView] = useState('users');
 
     const handleHighlight = (e) => {
         if (current) {
-            current.classList.remove('controlsHighlighted')
+            current.classList.remove('controlsHighlighted');
         }
-        setCurrent(e.target)
-        e.target.classList.add('controlsHighlighted')
-    }
+        setCurrent(e.target);
+        e.target.classList.add('controlsHighlighted');
+    };
 
     return (
         <div ref={props.usersRef} className='usersWindow'>
@@ -107,13 +107,13 @@ const mapStateToProps = state => {
         rooms: state.rooms,
         myNickname: state.userInfo.nickname,
     }
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         setTarget: (nick) => dispatch(setMsgtarget(nick)),
         checkNew: (nick) => dispatch(removeFromNew(nick))
     }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersWindow)
+export default connect(mapStateToProps, mapDispatchToProps)(UsersWindow);

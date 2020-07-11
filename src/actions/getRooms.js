@@ -5,4 +5,4 @@ export const getRooms = (rooms) => {
         type: GET_ROOMS,
         payload: rooms
     }
-}
+};

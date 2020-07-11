@@ -4,8 +4,8 @@ import './ErrorModal.css'
 const ErrorModal = (props) => {
 
     const handleHideError = () => {
-        props.errorRef.current.className = 'errorModal'
-    }
+        props.errorRef.current.className = 'errorModal';
+    };
 
     return (
         <div ref={props.errorRef} className='errorModal'>
@@ -13,6 +13,6 @@ const ErrorModal = (props) => {
             <button className='formBtn' onClick={handleHideError}>Ok</button>
         </div>
     )
-}
+};
 
-export default ErrorModal
+export default ErrorModal;

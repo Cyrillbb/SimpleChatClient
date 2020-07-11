@@ -7,19 +7,19 @@ import { removeFromNew } from './../../actions/removeFromNew';
 
 
 function ChatWindow(props) {
-    const [msg, setMsg] = useState('')
-    const { socket, targetNickname, removeNew, newMsg, msgRef } = props
-    const msgForm = useRef(null)
+    const [msg, setMsg] = useState('');
+    const { socket, targetNickname, removeNew, newMsg, msgRef } = props;
+    const msgForm = useRef(null);
     
     useEffect(() => {
         if (targetNickname === newMsg[newMsg.length - 1]) {
-            msgRef.current.scrollTop = msgRef.current.scrollHeight
-            removeNew(newMsg[newMsg.length - 1])
+            msgRef.current.scrollTop = msgRef.current.scrollHeight;
+            removeNew(newMsg[newMsg.length - 1]);
         }
 
-    }, [targetNickname, socket, removeNew, newMsg, msgRef])
+    }, [targetNickname, socket, removeNew, newMsg, msgRef]);
 
-    const imgRegEx = /png$|jpg$|jpeg$|gif$/
+    const imgRegEx = /png$|jpg$|jpeg$|gif$/;
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -35,7 +35,7 @@ function ChatWindow(props) {
                 msgRef.current.scrollTop = msgRef.current.scrollHeight
             }, 500)
         }
-    }
+    };
 
 
 
@@ -43,7 +43,7 @@ function ChatWindow(props) {
         props.usersRef.current.className === 'usersWindow' ?
             props.usersRef.current.className = 'usersWindow-resp' :
             props.usersRef.current.className = 'usersWindow'
-    }
+    };
 
     return (
         <div className='chatWindow'>

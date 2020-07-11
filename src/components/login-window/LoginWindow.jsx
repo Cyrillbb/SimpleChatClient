@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { login } from './../../actions/login';
 import { connect } from 'react-redux';
 import './LoginWindow.css'
@@ -6,22 +6,22 @@ import './LoginWindow.css'
 
 
 function LoginWindow(props) {
-    const [nickname, setNickname] = useState('')
-    const [password, setPassword] = useState('')
-    const [loginType, setLoginType] = useState('login')
+    const [nickname, setNickname] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginType, setLoginType] = useState('login');
 
     const handleLogin = (e) => {
-        e.preventDefault()
-        props.socket.emit('logIn', { nickname, password })        
-    }
+        e.preventDefault();
+        props.socket.emit('logIn', { nickname, password })     ;   
+    };
 
     const handleCreate = (e) => {
-        e.preventDefault()
-        props.socket.emit('newUser', { nickname, password })
-        setLoginType('login')
-        setNickname('')
-        setPassword('')
-    }
+        e.preventDefault();
+        props.socket.emit('newUser', { nickname, password });
+        setLoginType('login');
+        setNickname('');
+        setPassword('');
+    };
 
     return (
         <div>
@@ -71,12 +71,12 @@ function LoginWindow(props) {
             }
         </div>
     )
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         logIn: () => dispatch(login())
     }
-}
+};
 
-export default connect(null, mapDispatchToProps)(LoginWindow)
+export default connect(null, mapDispatchToProps)(LoginWindow);

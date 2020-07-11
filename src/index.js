@@ -10,9 +10,9 @@ import logger from 'redux-logger';
 import { Provider } from 'react-redux';
 import io from "socket.io-client";
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger))
-//const socket = io.connect('http://localhost:5000')
-const socket = io.connect('https://cyrils-simple-chat.herokuapp.com/')
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+//const socket = io.connect('http://localhost:5000');
+const socket = io.connect('https://cyrils-simple-chat.herokuapp.com/');
 
 ReactDOM.render(
   <React.StrictMode>

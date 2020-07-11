@@ -1,7 +1,7 @@
 
 import { GET_ROOMS } from './../actions/action-types';
 
-const initialState = []
+const initialState = [];
 
 export const roomsGetter = (state = initialState, action) => {
     switch (action.type) {
@@ -10,4 +10,4 @@ export const roomsGetter = (state = initialState, action) => {
         default:
             return state
     }
-}
+};

@@ -1,18 +1,18 @@
 import React from 'react';
-import './roomName.css'
+import './roomName.css';
 import { connect } from 'react-redux';
 
 function RoomInvite(props) {
 
     const handleJoinRoom = () => {
-        console.log('JOIN')
-        props.socket.emit('join room', { room: props.roomName, nickname: props.userInfo.nickname})
-    }
+        console.log('JOIN');
+        props.socket.emit('join room', { room: props.roomName, nickname: props.userInfo.nickname});
+    };
 
     const handleDecline = () => {
-        props.setModal(false)
-        props.socket.emit('decline room', {room: props.roomName, nickname: props.userInfo.nickname})
-    }
+        props.setModal(false);
+        props.socket.emit('decline room', {room: props.roomName, nickname: props.userInfo.nickname});
+    };
 
     return (
         <div className='roomInvite'>
@@ -37,6 +37,6 @@ const mapStateToProps = state => {
     return {
         userInfo: state.userInfo
     }
-}
+};
 
 export default connect(mapStateToProps, null)(RoomInvite);

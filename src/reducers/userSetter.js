@@ -4,7 +4,7 @@ import { SET_USER_INFO } from './../actions/action-types';
 const initialState = {
     nickname: '',
     id: '',
-}
+};
 
 export const userSetter = (state = initialState, action) => {
     switch (action.type) {
@@ -13,4 +13,4 @@ export const userSetter = (state = initialState, action) => {
         }
         default: return state
     }
-}
+};

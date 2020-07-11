@@ -5,15 +5,15 @@ import { useState } from 'react';
 import './createRoom.css'
 
 function CreateRoom(props) {
-    const [selectedUsers, setUsers] = useState([])
-    const [roomName, setRoomName] = useState('')
+    const [selectedUsers, setUsers] = useState([]);
+    const [roomName, setRoomName] = useState('');
 
     const handleSelect = (e) => {
         if (e.target.checked) {
-            setUsers([...selectedUsers, e.target.id])
+            setUsers([...selectedUsers, e.target.id]);
         }
         else {
-            setUsers(selectedUsers.filter(i => i !== e.target.id))
+            setUsers(selectedUsers.filter(i => i !== e.target.id));
         }
     }
 
@@ -22,7 +22,7 @@ function CreateRoom(props) {
             roomName: roomName,
             users: selectedUsers
         })
-    }
+    };
 
     return (
         <div className='createRoom'>
@@ -51,7 +51,7 @@ const mapStateToProps = state => {
     return {
         users: state.users
     }
-}
+};
 
 
-export default connect(mapStateToProps, null)(CreateRoom)
+export default connect(mapStateToProps, null)(CreateRoom);

@@ -1,7 +1,7 @@
-import { SET_MESSAGE_TARGET } from "../actions/action-types"
+import { SET_MESSAGE_TARGET } from "../actions/action-types";
 
 
-const initialState = ''
+const initialState = '';
 
 export const msgTargetSetter = (state = initialState, action) => {
     switch (action.type) {
@@ -11,4 +11,4 @@ export const msgTargetSetter = (state = initialState, action) => {
         default: return state
 
     }
-}
+};

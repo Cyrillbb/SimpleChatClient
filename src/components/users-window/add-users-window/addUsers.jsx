@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import './addUsers.css'
 
 const AddUsers = props => {
-    const [newUsers, setNewUsers] = useState([])
+    const [newUsers, setNewUsers] = useState([]);
 
     const handleSelect = (e) => {
         if (e.target.checked) {
-            setNewUsers([...newUsers, e.target.id])
+            setNewUsers([...newUsers, e.target.id]);
         }
         else {
-            setNewUsers(newUsers.filter(i => i !== e.target.id))
+            setNewUsers(newUsers.filter(i => i !== e.target.id));
         }
-    }
+    };
 
     const handleAddUsers = () => {
         props.socket.emit('add users', {
@@ -20,7 +20,7 @@ const AddUsers = props => {
             users: newUsers
         })
         props.addRef.current.className = 'addUsers'
-    }
+    };
 
     return (
         <div className='addUsers' ref={props.addRef}>
@@ -49,6 +49,6 @@ const mapStateToProps = state => {
         users: state.users,
         target: state.msgTarget,
     }
-}
+};
 
-export default connect(mapStateToProps, null)(AddUsers)
+export default connect(mapStateToProps, null)(AddUsers);

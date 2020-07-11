@@ -1,4 +1,4 @@
-import { CHECK_NEW } from "./action-types"
+import { CHECK_NEW } from "./action-types";
 
 
 export const checkNew = (e) => {
@@ -6,4 +6,4 @@ export const checkNew = (e) => {
         type: CHECK_NEW,
         payload: e.from
     }
-}
+};

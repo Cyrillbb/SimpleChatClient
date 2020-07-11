@@ -1,7 +1,7 @@
 
 import { RECIEVE_MESSAGES } from './../actions/action-types';
 
-const initialState = []
+const initialState = [];
 
 export const messageReciever = (state = initialState, action) => {
     switch (action.type) {
@@ -10,4 +10,4 @@ export const messageReciever = (state = initialState, action) => {
         }
         default: return state
     }
-}
+};

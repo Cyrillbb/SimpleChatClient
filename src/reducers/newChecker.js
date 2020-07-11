@@ -2,7 +2,7 @@ import { CHECK_NEW } from "../actions/action-types"
 import { REMOVE_FROM_NEW } from './../actions/action-types';
 
 
-const initialState = []
+const initialState = [];
 
 export const newChecker = (state = initialState, action) => {
     switch (action.type) {
@@ -14,4 +14,4 @@ export const newChecker = (state = initialState, action) => {
         }
         default: return state
     }
-}
+};

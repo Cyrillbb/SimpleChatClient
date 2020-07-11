@@ -1,7 +1,7 @@
 
 import { GET_ONLINE_USERS } from './../actions/action-types';
 
-const initialState = []
+const initialState = [];
 
 export const usersGetter = (state = initialState, action) => {
     switch (action.type) {
@@ -10,4 +10,4 @@ export const usersGetter = (state = initialState, action) => {
         }
         default: return state
     }
-}
+};

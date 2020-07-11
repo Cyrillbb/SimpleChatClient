@@ -6,4 +6,4 @@ export const getUsers = (data) => {
         type: GET_ONLINE_USERS,
         payload: data
     }
-}
+};
