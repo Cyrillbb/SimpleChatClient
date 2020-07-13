@@ -6,18 +6,20 @@ import './LoginWindow.css'
 
 
 function LoginWindow(props) {
+    const { socket } = props;
+
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
     const [loginType, setLoginType] = useState('login');
 
     const handleLogin = (e) => {
         e.preventDefault();
-        props.socket.emit('logIn', { nickname, password })     ;   
+        socket.emit('logIn', { nickname, password });
     };
 
     const handleCreate = (e) => {
         e.preventDefault();
-        props.socket.emit('newUser', { nickname, password });
+        socket.emit('newUser', { nickname, password });
         setLoginType('login');
         setNickname('');
         setPassword('');

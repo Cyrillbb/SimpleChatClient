@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './roomInfo.css'
 
 function RoomInfo(props) {
     const { rooms, targetNickname } = props;

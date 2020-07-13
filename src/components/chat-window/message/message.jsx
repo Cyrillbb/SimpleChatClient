@@ -1,7 +1,8 @@
 import React from 'react';
+import './message.css';
 
 function Message(props) {
-    const {content, nameOfClass} = props
+    const { content, nameOfClass, smallMsgClass } = props
 
     const imgRegEx = /png$|jpg$|jpeg$|gif$/;
 
@@ -16,7 +17,7 @@ function Message(props) {
                 }
             </div>
             <div>
-                <small className='smallName'>{content.user || content.from}</small>
+                <small className={smallMsgClass}>{content.user || content.from}</small>
             </div>
         </li>
     )

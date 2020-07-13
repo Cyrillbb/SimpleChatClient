@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './chatRespMenu.css';
 
 function ChatRespMenu(props) {
     const { myNickname, newMsg, usersRef } = props;

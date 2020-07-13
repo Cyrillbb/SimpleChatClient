@@ -1,0 +1,43 @@
+.msgFromMe {
+    background-color: #0e3860;
+    color: white;
+    max-width: 60%;
+    margin: 5px;
+    word-wrap: break-word;
+    padding: 5px;
+    border-radius: 5px;
+    width: max-content;
+}
+
+.msgToMe {
+    background-color: #3d4b5c;
+    max-width: 60%;
+    margin: 5px;
+    word-wrap: break-word;
+    padding: 5px;
+    border-radius: 5px;
+    width: max-content;
+    align-self: flex-start;
+    color: white;
+}
+
+.imgLink {
+    text-decoration: none;
+    color: white;
+}
+
+.imgLink:link {
+    color: white;
+}
+
+.smallName {
+    color: rgb(112, 176, 194);
+}
+
+.smallNameRight {
+    color: rgb(112, 176, 194);
+    width: 100%;
+    position: relative;
+    display: inline-block;
+    text-align: right;
+}

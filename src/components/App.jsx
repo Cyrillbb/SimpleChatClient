@@ -21,7 +21,7 @@ import sound from '../assets/not.mp3';
 
 function App(props) {
 
-    const { socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn } = props;
+    const { socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn, status } = props;
     const [inviteModal, setInviteModal] = useState(false);
     const [roomName, setRoomName] = useState('');
     const [errorText, setErrorText] = useState('');
@@ -72,19 +72,19 @@ function App(props) {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/'>
-                        {props.status ?
+                        {status ?
                             <div>
                                 <Header />
                                 <div className='chat'>
-                                    <UsersWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={props.socket} />
-                                    <ChatWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={props.socket} />
+                                    <UsersWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={socket} />
+                                    <ChatWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={socket} />
                                     <ErrorModal errorRef={errorModal} errorText={errorText} />                                                                       
                                 </div>
                             </div>
                             :
                             <div>
                                 <Header />
-                                <LoginWindow socket={props.socket} />
+                                <LoginWindow socket={socket} />
                                 <ErrorModal errorRef={errorModal} errorText={errorText} />
                             </div>
                         }

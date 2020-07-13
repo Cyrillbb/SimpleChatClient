@@ -17,7 +17,7 @@ function ChatWindow(props) {
             removeNew(newMsg[newMsg.length - 1]);
             removeNew(myNickname)
         }
-    }, [targetNickname, socket, removeNew, newMsg, msgRef]);
+    }, [targetNickname, socket, removeNew, newMsg, msgRef, myNickname]);
 
     return (
         <div className='chatWindow'>
@@ -29,10 +29,10 @@ function ChatWindow(props) {
                         .filter(i => i.to === targetNickname || i.from === targetNickname)
                         .map((i, index) => {
                             if (i.from === targetNickname && i.user !== myNickname) {
-                                return <Message content={i} nameOfClass={'msgToMe'} key={index} />
+                                return <Message content={i} nameOfClass={'msgToMe'} smallMsgClass={'smallName'} key={index} />
                             }
                             else {
-                                return <Message content={i} nameOfClass={'msgFromMe'} key={index} />
+                                return <Message content={i} nameOfClass={'msgFromMe'} smallMsgClass={'smallNameRight'} key={index} />
                             }
                         })
                     }

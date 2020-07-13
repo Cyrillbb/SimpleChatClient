@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
+import './chatForm.css';
 
 function ChatForm(props) {
     const { msgRef, targetNickname, socket, myNickname } = props

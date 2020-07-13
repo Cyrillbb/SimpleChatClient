@@ -3,22 +3,23 @@ import './roomName.css';
 import { connect } from 'react-redux';
 
 function RoomInvite(props) {
+    const { socket, roomName, userInfo, setModal } = props;
 
     const handleJoinRoom = () => {
         console.log('JOIN');
-        props.socket.emit('join room', { room: props.roomName, nickname: props.userInfo.nickname});
+        socket.emit('join room', { room: roomName, nickname: userInfo.nickname });
     };
 
     const handleDecline = () => {
-        props.setModal(false);
-        props.socket.emit('decline room', {room: props.roomName, nickname: props.userInfo.nickname});
+        setModal(false);
+        socket.emit('decline room', { room: roomName, nickname: userInfo.nickname });
     };
 
     return (
         <div className='roomInvite'>
             <div className='invBody'>
                 <h3 className='invHeader'>
-                    You were invited to join {props.roomName}
+                    You were invited to join {roomName}
                 </h3>
                 <div className='btnGroup'>
                     <button className='formBtn' onClick={handleJoinRoom}>

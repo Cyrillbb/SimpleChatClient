@@ -5,6 +5,7 @@ import { useState } from 'react';
 import './createRoom.css'
 
 function CreateRoom(props) {
+    const {socket, users} = props;
     const [selectedUsers, setUsers] = useState([]);
     const [roomName, setRoomName] = useState('');
 
@@ -18,7 +19,7 @@ function CreateRoom(props) {
     }
 
     const handleCreateRoom = () => {
-        props.socket.emit('create room', {
+        socket.emit('create room', {
             roomName: roomName,
             users: selectedUsers
         })
@@ -28,7 +29,7 @@ function CreateRoom(props) {
         <div className='createRoom'>
             <input type="text" id='roomName' placeholder='Enter room name' className='loginInpt' autoComplete='off' onChange={(e) => setRoomName(e.target.value)} />
             <ul className='roomUserList'>
-                {props.users.map(i =>
+                {users.map(i =>
                     <li key={i.nickname} className='selectUserDiv'>
                         <input type='checkbox' id={i.nickname} onChange={handleSelect} />
                         <label htmlFor={i.nickname}>{i.nickname}</label>

@@ -1,0 +1,20 @@
+.btnBlock {
+    height: 4vh;
+}
+
+.controls {
+    width: 50%;
+    height: 100%;
+    background-color: #23395d;
+    color: grey;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 750px) {
+    .btnBlock {
+        height: 5%;
+    }
+}
