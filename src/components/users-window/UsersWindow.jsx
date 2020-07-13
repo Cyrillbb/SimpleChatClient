@@ -28,15 +28,15 @@ function UsersWindow(props) {
                 <button className='controls' onClick={() => setView('users')}>
                     Show users online
                     {props.new.filter(i => i !== props.myNickname && props.usersList.find(item => item.nickname === i)).length > 0 ?
-                    <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
-                    undefined
+                        <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
+                        undefined
                     }
                 </button>
                 <button className='controls' onClick={() => setView('rooms')}>
                     Show rooms
                     {props.new.filter(i => i !== props.myNickname && props.rooms.find(item => item.roomName === i)).length > 0 ?
-                    <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
-                    undefined
+                        <span className='counter'>{props.new.filter(i => i !== props.myNickname).length}</span> :
+                        undefined
                     }
                 </button>
             </div>
