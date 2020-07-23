@@ -25,7 +25,13 @@ function ChatForm(props) {
 
     return (
         <form className='chatForm' onSubmit={handleSubmit}>
-            <input className='msgInput' onChange={(e) => { setMsg(e.target.value) }} placeholder='message...' autoComplete='off' type="text" ref={msgForm} id="msg" />
+            {targetNickname.length > 0 ? 
+            <input className='msgInput' 
+            onChange={(e) => { setMsg(e.target.value) }} 
+            placeholder='message...' autoComplete='off' type="text" ref={msgForm} id="msg" />:
+            <input className='msgInput' disabled='true' id="msg" type="text"/>
+            }
+            
             <button className='sendBtn' type='submit'><i className="far fa-paper-plane"></i></button>
         </form>
     )
