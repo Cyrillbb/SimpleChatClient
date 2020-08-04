@@ -61,6 +61,10 @@ function App(props) {
             setErrorText(e);
             errorModal.current.className = "errorModal-visible";
         });
+        socket.on('error', (error) => {
+            setErrorText(error);
+            errorModal.current.className = "errorModal-visible";
+          });
     }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn]);
 
 
