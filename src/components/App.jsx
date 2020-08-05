@@ -41,7 +41,7 @@ function App(props) {
         socket.on('send messages', e => {
             recieveMsg(e);
             checkNew(e);
-            const audio = new Audio(sound)  ;          
+            const audio = new Audio(sound);
             audio.play();
         })
         socket.on('msgHistory', e => recieveMsg(e));
@@ -64,7 +64,7 @@ function App(props) {
         socket.on('error', (error) => {
             setErrorText(error);
             errorModal.current.className = "errorModal-visible";
-          });
+        });
     }, [socket, setUser, getUsers, recieveMsg, checkNew, getRooms, logIn]);
 
 
@@ -82,7 +82,7 @@ function App(props) {
                                 <div className='chat'>
                                     <UsersWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={socket} />
                                     <ChatWindow msgRef={msgListRef} usersRef={refUsersWindow} socket={socket} />
-                                    <ErrorModal errorRef={errorModal} errorText={errorText} />                                                                       
+                                    <ErrorModal errorRef={errorModal} errorText={errorText} />
                                 </div>
                             </div>
                             :
